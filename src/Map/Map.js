@@ -7,6 +7,7 @@ import styled from 'styled-components'
 const Wrapper = styled.div `
     width: ${props =>props.width}
     height: ${props =>props.height}
+    border: '2px solid black'
 `
 
 
@@ -24,19 +25,23 @@ export default class Map extends Component {
         
         
         //creating Icon
-        var myIcon = L.divIcon({
-            iconUrl: 'my-icon.png',
-            iconSize: [38, 95],
-            iconAnchor: [22, 94],
-            popupAnchor: [-3, -76],
-            shadowUrl: 'my-icon-shadow.png',
-            shadowSize: [68, 95],
-            shadowAnchor: [22, 94]
+        var myIcon = L.icon({
+            //icon url
+            iconUrl: 'https://image.flaticon.com/icons/png/512/149/149060.png',
+            
+            //icon options
+            iconSize: [38, 38],
+            iconAnchor: [20, 38],
+            shadowSize: [50, 64]
+            
+
         });
         //creating a marker
-        L.marker([51.5, -0.09], {icon:myIcon}).addTo(myMap)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();
+        function onClick(e){
+            L.marker(e.latlng,{icon:myIcon}).addTo(myMap)
+            console.log(e.latlng.toString())
+        }
+        myMap.on('click', onClick)
     }
     render() {
         return (<Wrapper id='map' width = '800px' height = '600px' />)
