@@ -27,14 +27,16 @@ class Page extends React.Component {
         // creating the XHttpRequest Object
         let xhttp = new XMLHttpRequest()
         // hadle server response
+        const page = this
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 console.log('server response',this.responseText)
+                page.setState({
+                    value : this.responseText
+                })
            }
         }
-        this.setState({
-            value : this.responseText
-        })
+        
         console.log('state: ' + this.state.value)
         //The object's state must be OPENED.
         xhttp.open('POST', 'http://localhost:8080/', true)
@@ -43,8 +45,8 @@ class Page extends React.Component {
         xhttp.send(this.state.value)
         console.log('send')
         
-        /* //transition on another page by click
-        window.location.assign('http://localhost:3000/second') */
+        //transition on another page by click
+        this.props.updateMC(this.state.value)
     }
 
     render(){

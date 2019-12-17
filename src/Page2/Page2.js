@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../Page/Page'
+import Map from '../Map/Map'
 
 class Page2 extends Component{
     render() {
@@ -15,10 +15,13 @@ class Page2 extends Component{
         return(
             
             <div style={divStyles}>
-                
-                <p>{this.props.value}</p>
+               {<h1>Hello, {this.props.value}. <p>Where are you?</p></h1> }
+             <Map />
             </div>
-        )
+                
+            
+            
+        )   
     }
 }
 

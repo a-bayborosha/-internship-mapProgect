@@ -13,9 +13,12 @@ class HomeButton extends Component{
             color : '#fff',
             cursor : 'pointer'
         }
+        function goHome(){
+            window.location.assign('http://localhost:3000/')
+        }
         return(
             <div>
-                <button style={divStyle} onClick>
+                <button style={divStyle} onClick={goHome}>
                     Home
                 </button>
     
