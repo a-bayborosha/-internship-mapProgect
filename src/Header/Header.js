@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeButton from '../HomeButton/HomeButton'
-import {Route} from 'react-router-dom'
+/* import {Route} from 'react-router-dom' */
 
 
 class Header extends React.Component {

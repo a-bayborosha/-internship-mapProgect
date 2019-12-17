@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 /* import { Button } from 'react-native-elements'; */
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+/* import Icon from 'react-native-vector-icons/FontAwesome';
+ */
 class HomeButton extends Component{
     render() {
         const divStyle = {
@@ -15,13 +15,13 @@ class HomeButton extends Component{
         }
         return(
             <div>
-                {/* <button style={divStyle} onClick>
+                <button style={divStyle} onClick>
                     Home
-                </button> */}
+                </button>
     
-              <Icon
-                name='rowing' /> 
-            </div>
+             {/*  <Icon
+                name='rowing' /> */}
+            </div> 
            
             
         )
