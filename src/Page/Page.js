@@ -38,7 +38,7 @@ class Page extends React.Component {
         console.log('state: ' + this.state.value)
         //The object's state must be OPENED.
         xhttp.open('POST', 'http://localhost:8080/', true)
-        xhttp.setRequestHeader('Content-Type', 'text/html');
+        xhttp.setRequestHeader('Content-Type', 'text/plain');
         //sending request (name from 'input') to server
         xhttp.send(this.state.value)
         console.log('send')
