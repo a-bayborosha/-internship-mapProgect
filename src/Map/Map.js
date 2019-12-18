@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 
 const Wrapper = styled.div `
-    width: ${props =>props.width}
+    /* width: ${props =>props.width} */
     height: ${props =>props.height}
     border: '2px solid black'
 `
@@ -44,6 +44,6 @@ export default class Map extends Component {
         myMap.on('click', onClick)
     }
     render() {
-        return (<Wrapper id='map' width = '800px' height = '600px' />)
+        return (<Wrapper id='map' height = '600px' />)
     }
 }

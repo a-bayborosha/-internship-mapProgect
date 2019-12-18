@@ -4,8 +4,11 @@ import React from 'react'
 class Page extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
-    
+        console.log(props)
+        this.state = {  value: '',
+                        color: props.backgroundColor};
+                        
+        console.log(props.backgroundColor)
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -52,12 +55,13 @@ class Page extends React.Component {
     render(){
         
         const divStyles = {
-            width : 800,
+            width : '100%',
             height: 800,
             textAlign: 'center',
             border: '1px solid black',
             marginLeft: '400px',
             marginRight: '300px',
+            backgroundColor: this.state.color
             
         }
 

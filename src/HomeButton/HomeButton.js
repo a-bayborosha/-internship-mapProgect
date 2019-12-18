@@ -1,32 +1,25 @@
 import React, { Component } from 'react'
-/* import { Button } from 'react-native-elements'; */
-/* import Icon from 'react-native-vector-icons/FontAwesome';
- */
+//import AccessAlarmIcon from '@material-ui/icons/AccessAlarm'
+//import ThreeDRotation from '@material-ui/icons/ThreeDRotation'
+import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
+//import { fontSize } from '@material-ui/system';
+
 class HomeButton extends Component{
     render() {
-        const divStyle = {
-            backgroundColor : 'blue',
-            marginLeft : '20px',
-            marginTop : '50px', 
-            width   : '50px',
-            high  : '50px',
-            color : '#fff',
-            cursor : 'pointer'
-        }
+       
         function goHome(){
             window.location.assign('http://localhost:3000/')
         }
         return(
             <div>
-                <button style={divStyle} onClick={goHome}>
-                    Home
-                </button>
-    
-             {/*  <Icon
-                name='rowing' /> */}
+                <HomeTwoToneIcon style={{   color:'white',
+                                            fontSize:60,
+                                            marginLeft : '20px',
+                                            marginTop : '20px',
+                                            cursor : 'pointer',
+                                            borderRadius : '50%'
+                                            }} onClick={goHome}/> 
             </div> 
-           
-            
         )
     }
 }
