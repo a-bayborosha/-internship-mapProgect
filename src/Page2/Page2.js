@@ -4,25 +4,36 @@ import Map from '../Map/Map'
 class Page2 extends Component{
     constructor(props) {
         super(props);
-        console.log(props.backgroungColor)
-        this.state= {color: props.backgroungColor}
-        console.log(this.state.color)
+        this.state= {color: props.backgroundColor}
+        
+
       }
+      
     render() {
         const divStyles = {
             width: '100%',
             height: 800,
             textAlign: 'center',
-            border: '1px solid black',
-            marginLeft: '400px',
-            marginRight: '300px',
-            backgroungColor: this.state.color
-            
+            backgroundColor: this.state.color,
+            fontFamily: 'Ma Shan Zheng, cursive',
+
         }
+
+        let name = this.props.name
+        if(name === ''){
+            name = 'stranger'
+        } else {
+            name = this.props.name
+        }
+
         return(
             
             <div style={divStyles}>
-               {<h1>Hello, {this.props.value}. <p>Where are you?</p></h1> }
+                
+               <h1 style={{backgroundColor:this.state.color, border: '1px solid black'}}>
+                   Hello, {name}! 
+               Where are you?</h1>
+               
              <Map />
             </div>
                 

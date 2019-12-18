@@ -7,11 +7,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#ff4400',
+            main: '#6002ee',
         },
         secondary: {
-            light: '#0066ff',
-            main: '#0044ff',
+            light: '#acb0ce',
+            main: '#acb0ce',
             contrastText: '#ffcc00',
         },
     },
@@ -45,16 +45,16 @@ class MainComponent extends Component {
          return (
             
             <>
-            <Header backgroungColor={theme.palette.primary.main} />
-            <Page backgroungColor={theme.palette.secondary.main} updateMC={this.updateMC}/>
+            <Header backgroundColor={theme.palette.primary.main} />
+            <Page backgroundColor={theme.palette.secondary.main} updateMC={this.updateMC}/>
             </>
            
             
             )
         } else {
             return (<>
-            <Header backgroungColor={theme.palette.primary.main} />
-            <Page2 backgroungColor={theme.palette.secondary.light} />
+            <Header backgroundColor={theme.palette.primary.main} />
+            <Page2 backgroundColor={theme.palette.secondary.light} name = {this.state.name}/>
             </>)
         }
         

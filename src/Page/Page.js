@@ -1,14 +1,16 @@
 import React from 'react'
-
+import { Form} from 'semantic-ui-react'
 
 class Page extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
+        /* console.log(props[Object.keys(props)[0]])
+        console.log(props[Object.keys(props)[0]]) */
         this.state = {  value: '',
                         color: props.backgroundColor};
                         
         console.log(props.backgroundColor)
+        console.log(this.state.color)
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -34,6 +36,7 @@ class Page extends React.Component {
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 console.log('server response',this.responseText)
+                //name from input to State
                 page.setState({
                     value : this.responseText
                 })
@@ -55,28 +58,35 @@ class Page extends React.Component {
     render(){
         
         const divStyles = {
+            paddingTop: '100px',
             width : '100%',
             height: 800,
             textAlign: 'center',
-            border: '1px solid black',
-            marginLeft: '400px',
-            marginRight: '300px',
-            backgroundColor: this.state.color
+            backgroundColor:  this.state.color,
+            fontFamily: 'Girassol, cursive'
+            
             
         }
+
+        
 
         return (
             <div style={divStyles}>
                 <h1>Hello, what is your name?</h1>
-                <form onClick={this.handleSubmit}>
-                    <label>
-                        <input  type="text" 
+
+                <Form onClick={this.handleSubmit}>
+                    <Form.Field>
+                        <label>
+                            <input type="text" 
+                                placeholder='Your Name'
                                 value={this.state.value}
-                                onChange={this.handleChange} />  
-                    </label>
-                    <br />
-                    <input type="submit" value="Send" onClick={this.sendRequest}/>    
-                </form>      
+                                onChange={this.handleChange} />
+                        </label>
+                        <br />
+                        <input type="submit" value="Send" onClick={this.sendRequest} style={{marginTop:'10px'}}/>
+                    </Form.Field>
+                </Form>
+                
             </div>
         )
     }

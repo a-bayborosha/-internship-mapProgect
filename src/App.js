@@ -14,10 +14,9 @@ render(){
   return (
     
     <div id="wrapper">
-      {/* <Header /> */}
+      
       <Route path="/" exact component={MainConponent} />
-     {/*  <Route path="/first" exact component={Page} />
-      <Route path="/second" exact component={Page2} /> */}
+     
     </div>
     
    )
