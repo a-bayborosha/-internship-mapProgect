@@ -1,5 +1,7 @@
 import React from 'react'
-import { Form} from 'semantic-ui-react'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 class Page extends React.Component {
     constructor(props) {
@@ -72,21 +74,17 @@ class Page extends React.Component {
 
         return (
             <div style={divStyles}>
-                <h1>Hello, what is your name?</h1>
-
-                <Form onClick={this.handleSubmit}>
-                    <Form.Field>
-                        <label>
-                            <input type="text" 
-                                placeholder='Your Name'
+                <Typography variant='h3' component='h1'>
+                Hello, what is your name?
+                </Typography>
+                <form onClick={this.handleSubmit}>
+                    
+                     <TextField label='Your name' variant='outlined' 
                                 value={this.state.value}
-                                onChange={this.handleChange} />
-                        </label>
-                        <br />
-                        <input type="submit" value="Send" onClick={this.sendRequest} style={{marginTop:'10px'}}/>
-                    </Form.Field>
-                </Form>
-                
+                                onChange={this.handleChange}/>
+                </form>
+                <br />
+                <Button variant='contained' color='primary' value="Send" onClick={this.sendRequest}>submit</Button>
             </div>
         )
     }

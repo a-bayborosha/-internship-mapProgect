@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
 import Map from '../Map/Map'
+import {ThemeProvider} from 'styled-components'
+import Typography from '@material-ui/core/Typography'
+import { createMuiTheme } from '@material-ui/core/styles';
+import 'typeface-roboto'
+
+
+
+
 
 class Page2 extends Component{
     constructor(props) {
@@ -10,17 +18,38 @@ class Page2 extends Component{
       }
       
     render() {
+        
+
+        const theme = createMuiTheme({
+            typography: {
+              // Use the system font.
+              fontFamily:
+                '-apple-system,system-ui,BlinkMacSystemFont,' +
+                '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+            },
+          })
+
         const divStyles = {
             width: '100%',
             height: 800,
             textAlign: 'center',
             backgroundColor: this.state.color,
-            fontFamily: 'Ma Shan Zheng, cursive',
+            fontFamily: 'Roboto, Arial'
 
         }
+        //regular expression pattern "only letters"
+        const regexp = /^([a-zа-яё]+)?/i
 
         let name = this.props.name
-        if(name === ''){
+        //match check of regular exp. with input Name
+        let matchAll = regexp.exec(name)
+        //assighment of the first match
+        let firstMatch = matchAll[0]
+
+
+       
+        
+        if(name === '' || name !== firstMatch){
             name = 'stranger'
         } else {
             name = this.props.name
@@ -29,12 +58,13 @@ class Page2 extends Component{
         return(
             
             <div style={divStyles}>
-                
-               <h1 style={{backgroundColor:this.state.color, border: '1px solid black'}}>
-                   Hello, {name}! 
-               Where are you?</h1>
+                <ThemeProvider theme={theme}>
+                <Typography variant='h3' component='h1'>
                
-             <Map />
+                Hello, {name}! Where are you?
+                </Typography>
+                </ThemeProvider>
+                <Map />
             </div>
                 
             
