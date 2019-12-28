@@ -44,6 +44,6 @@ export default class Map extends Component {
         myMap.on('click', onClick)
     }
     render() {
-        return (<Wrapper id='map' height = '600px' />)
+        return (<Wrapper id='map' height = '100%' />)
     }
 }
