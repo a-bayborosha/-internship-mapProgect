@@ -2,9 +2,12 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 68db6d2a409eccf81be483e45a405ad4e8c081c9
 
 class Page extends React.Component {
     constructor(props) {
@@ -86,6 +89,7 @@ class Page extends React.Component {
                 Hello, what is your name?
                 </Typography>
                 <form onClick={this.handleSubmit}>
+<<<<<<< HEAD
                  {/* {
                   (name !== firstMatch)
                   ?
@@ -98,6 +102,15 @@ class Page extends React.Component {
                 </form>
                 <br />
                 <Button variant='contained' color='primary' value="Send" type='submit' onClick={this.sendRequest}>Submit</Button>
+=======
+                    
+                     <TextField label='Your name' variant='outlined' 
+                                value={this.state.value}
+                                onChange={this.handleChange}/>
+                </form>
+                <br />
+                <Button variant='contained' color='primary' value="Send" onClick={this.sendRequest}>submit</Button>
+>>>>>>> 68db6d2a409eccf81be483e45a405ad4e8c081c9
             </div>
         )
     }
