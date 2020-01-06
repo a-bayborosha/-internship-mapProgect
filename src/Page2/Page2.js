@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Map from '../Map/Map'
-import {ThemeProvider} from 'styled-components'
+//import {ThemeProvider} from 'styled-components'
 import Typography from '@material-ui/core/Typography'
-import { createMuiTheme } from '@material-ui/core/styles';
+//import { createMuiTheme } from '@material-ui/core/styles';
+//import {MuiThemeProvider} from '@material-ui/core/styles'
 import 'typeface-roboto'
 
 
@@ -18,26 +19,16 @@ class Page2 extends Component{
       }
       
     render() {
-        
-
-        const theme = createMuiTheme({
-            typography: {
-              // Use the system font.
-              fontFamily:
-                '-apple-system,system-ui,BlinkMacSystemFont,' +
-                '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-            },
-          })
-
+       
         const divStyles = {
             width: '100%',
             height: 800,
             textAlign: 'center',
             backgroundColor: this.state.color,
-            fontFamily: 'Roboto, Arial'
+            fontFamily: 'Roboto, sans-serif'
 
         }
-        //regular expression pattern "only letters"
+        /* //regular expression pattern "only letters"
         const regexp = /^([a-zа-яё]+)?/i
 
         let name = this.props.name
@@ -45,11 +36,11 @@ class Page2 extends Component{
         let matchAll = regexp.exec(name)
         //assighment of the first match
         let firstMatch = matchAll[0]
-
-
+ */
+let name = this.props.name  
        
         
-        if(name === '' || name !== firstMatch){
+        if(name === ''){
             name = 'stranger'
         } else {
             name = this.props.name
@@ -58,12 +49,12 @@ class Page2 extends Component{
         return(
             
             <div style={divStyles}>
-                <ThemeProvider theme={theme}>
+                {/* <MuiThemeProvider theme={theme}> */}
                 <Typography variant='h3' component='h1'>
                
                 Hello, {name}! Where are you?
                 </Typography>
-                </ThemeProvider>
+                {/* </MuiThemeProvider> */}
                 <Map />
             </div>
                 

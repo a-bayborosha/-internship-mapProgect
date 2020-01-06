@@ -3,58 +3,58 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
+
+
+
 class Page extends React.Component {
     constructor(props) {
         super(props);
-        /* console.log(props[Object.keys(props)[0]])
-        console.log(props[Object.keys(props)[0]]) */
+
         this.state = {  value: '',
-                        color: props.backgroundColor};
-                        
-        console.log(props.backgroundColor)
-        console.log(this.state.color)
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+                        color: props.backgroundColor}; //from MainComponent
+
+         this.handleSubmit = this.handleSubmit.bind(this);
       }
       
-      handleChange(event) {
-        this.setState({value: event.target.value});
-      }
-    
       handleSubmit(event) {
         // log submitted user name
         console.log(this.state.value);
     
     event.preventDefault();
     }
-
+    
+//by onClick 
     sendRequest = () => {
         
         // sending request to server
         // creating the XHttpRequest Object
         let xhttp = new XMLHttpRequest()
-        // hadle server response
+        // присвоение объекта класса Page, чтобы иметь доступ внутри функции onReadystatechange(), 
+        //потому что там объект будет перезаписан как объект класса XMLHttpRequest
         const page = this
+        //event handler which is called whenever the state of a property changes
         xhttp.onreadystatechange = function() {
+            //current state of object (4 - 'The operation is fully completed' && 200 -'request is successful')
             if (this.readyState === 4 && this.status === 200) {
                 console.log('server response',this.responseText)
                 //name from input to State
                 page.setState({
                     value : this.responseText
                 })
+                //transition on another page by click
+                 page.props.updateMC(page.state.value)
            }
         }
         
-        console.log('state: ' + this.state.value)
+        console.log('state: ' + this.UserName.value)
         //The object's state must be OPENED.
         xhttp.open('POST', 'http://localhost:8080/', true)
         xhttp.setRequestHeader('Content-Type', 'text/html');
         //sending request (name from 'input') to server
-        xhttp.send(this.state.value)
+        xhttp.send(this.UserName.value)
         console.log('send')
         
-        //transition on another page by click
-        this.props.updateMC(this.state.value)
+        
     }
 
     render(){
@@ -66,11 +66,19 @@ class Page extends React.Component {
             textAlign: 'center',
             backgroundColor:  this.state.color,
             fontFamily: 'Girassol, cursive'
-            
-            
         }
-
         
+        //regular expression pattern "only letters"
+        const regexp = /^([a-zа-яё]+)?/i
+
+        let name = this.UserName
+        //match check of regular exp. with input Name
+        let matchAll = regexp.exec(name)
+        //assighment of the first match
+        let firstMatch = matchAll[0]
+
+
+
 
         return (
             <div style={divStyles}>
@@ -78,13 +86,18 @@ class Page extends React.Component {
                 Hello, what is your name?
                 </Typography>
                 <form onClick={this.handleSubmit}>
-                    
-                     <TextField label='Your name' variant='outlined' 
-                                value={this.state.value}
-                                onChange={this.handleChange}/>
+                 {/* {
+                  (name !== firstMatch)
+                  ?
+                    (<TextField inputRef={input => this.UserName = input} label='Your name' variant='outlined' />)
+                    : 
+                    (<TextField error id='outlined-error-helper-text' label='Error' helperText='Incorrect entry' variant='outlined' />)
+                 } */}
+
+                    <TextField inputRef={input => this.UserName = input} label='Your name' variant='outlined' />
                 </form>
                 <br />
-                <Button variant='contained' color='primary' value="Send" onClick={this.sendRequest}>submit</Button>
+                <Button variant='contained' color='primary' value="Send" type='submit' onClick={this.sendRequest}>Submit</Button>
             </div>
         )
     }

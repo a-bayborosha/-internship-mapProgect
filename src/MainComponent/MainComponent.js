@@ -41,7 +41,7 @@ class MainComponent extends Component {
      
     render () {
         if (this.state.page1) {
-                console.log(theme.palette.secondary.main)
+               /*  console.log(theme.palette.secondary.main) */
          return (
             
             <>
