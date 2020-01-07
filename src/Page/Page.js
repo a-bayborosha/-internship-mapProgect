@@ -2,30 +2,58 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-<<<<<<< HEAD
+//import TextField1 from '../TextField/TextField1'
 
 
 
-=======
->>>>>>> 68db6d2a409eccf81be483e45a405ad4e8c081c9
 
 class Page extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {  value: '',
-                        color: props.backgroundColor}; //from MainComponent
+        this.state = {  value       : '',
+                        helperText   : '',
+                        error       : false,
+                        color       : props.backgroundColor}; //from MainComponent
 
          this.handleSubmit = this.handleSubmit.bind(this);
+         this.nameCheck = this.nameCheck.bind(this);
       }
       
-      handleSubmit(event) {
+nameCheck(){
+    //regular expression pattern "only letters"
+    const regexp = /^([a-zа-яё]+)?/i
+    //assignment input content 
+    let name = this.UserName.value
+    //match check of regular exp. with input Name
+    let matchAll = regexp.exec(name)
+    //assighment of the first match
+    let firstMatch = matchAll[0]
+
+    //if there're 'non-letters' 
+    if(name !== firstMatch) {
+        //state'll changed
+        this.setState({helperText:'Incorrect entry, only letters allowed', error : true})
+       
+        return false
+    } else {
+       
+        return true
+    }
+
+}
+
+    handleSubmit(event) {
         // log submitted user name
         console.log(this.state.value);
     
     event.preventDefault();
     }
-    
+    /* 
+    onChange(event){
+        this.error = 'test'
+    } */
+
 //by onClick 
     sendRequest = () => {
         
@@ -45,7 +73,11 @@ class Page extends React.Component {
                     value : this.responseText
                 })
                 //transition on another page by click
-                 page.props.updateMC(page.state.value)
+                if(page.nameCheck()) {
+                    console.log('1')
+                    page.props.updateMC(page.state.value)
+                }
+                 
            }
         }
         
@@ -68,18 +100,10 @@ class Page extends React.Component {
             height: 800,
             textAlign: 'center',
             backgroundColor:  this.state.color,
-            fontFamily: 'Girassol, cursive'
+            fontFamily: 'Roboto, sans-serif'
         }
         
-        //regular expression pattern "only letters"
-        const regexp = /^([a-zа-яё]+)?/i
-
-        let name = this.UserName
-        //match check of regular exp. with input Name
-        let matchAll = regexp.exec(name)
-        //assighment of the first match
-        let firstMatch = matchAll[0]
-
+        
 
 
 
@@ -89,28 +113,15 @@ class Page extends React.Component {
                 Hello, what is your name?
                 </Typography>
                 <form onClick={this.handleSubmit}>
-<<<<<<< HEAD
-                 {/* {
-                  (name !== firstMatch)
-                  ?
-                    (<TextField inputRef={input => this.UserName = input} label='Your name' variant='outlined' />)
-                    : 
-                    (<TextField error id='outlined-error-helper-text' label='Error' helperText='Incorrect entry' variant='outlined' />)
-                 } */}
-
-                    <TextField inputRef={input => this.UserName = input} label='Your name' variant='outlined' />
+                 
+                <TextField inputRef={input => this.UserName = input} label='Your name' variant='outlined'
+                 helperText={this.state.helperText} 
+                 error={this.state.error} 
+                 />
+                    
                 </form>
                 <br />
                 <Button variant='contained' color='primary' value="Send" type='submit' onClick={this.sendRequest}>Submit</Button>
-=======
-                    
-                     <TextField label='Your name' variant='outlined' 
-                                value={this.state.value}
-                                onChange={this.handleChange}/>
-                </form>
-                <br />
-                <Button variant='contained' color='primary' value="Send" onClick={this.sendRequest}>submit</Button>
->>>>>>> 68db6d2a409eccf81be483e45a405ad4e8c081c9
             </div>
         )
     }

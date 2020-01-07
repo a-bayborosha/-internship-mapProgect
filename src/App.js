@@ -14,9 +14,6 @@ import MainConponent from './MainComponent/MainComponent'
 
 
 
-
-
-
 class App extends Component {
 render(){
   return (
